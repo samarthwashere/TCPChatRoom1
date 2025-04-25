@@ -2,6 +2,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.net.InetAddress;
 import java.net.Socket;
 
 public class Client implements Runnable{
@@ -15,7 +16,8 @@ public class Client implements Runnable{
     public void run()
     {
         try {
-            client = new Socket("10.11.22.84", 9999);
+            String ip = InetAddress.getLocalHost().getHostAddress();
+            client = new Socket(ip, 9999);
             out = new PrintWriter(client.getOutputStream(), true);
             in = new BufferedReader(new InputStreamReader(client.getInputStream()));
 
